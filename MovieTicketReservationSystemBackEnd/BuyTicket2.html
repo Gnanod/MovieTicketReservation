@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>MovieTicketReservationSystem</title>
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+  <link href="assets/css/material-kit.min1036.css?v=2.0.5" rel="stylesheet" />
+  <style>
+
+
+    .pad{
+      padding: 10px;
+    }
+
+      .defaultSeatClass{
+          background-color: #B2FF66 ;height: 30px;width:30px;padding-right: 35px;color: white;
+      }
+      .mouseEnter{
+          background-color: green ;height: 30px;width:30px;padding-right: 35px;color: white;
+      }
+      .reservedSeat{
+          background-color: red;height: 30px;width:30px;padding-right: 35px;color: white;
+      }
+      .seatClickClass{
+	  
+          background-color: blue;height: 30px;width:30px;padding-right: 35px;color: white;
+
+      }
+
+  </style>
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-color-on-scroll bg-white navbar-transparent fixed-top  navbar-expand-lg  " color-on-scroll="100" id="sectionsNav">
+
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+                 </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item pad">
+                    <a href="index.html" class="nav-link" >
+                        <i class="material-icons">home</i> Home
+                    </a>
+                </li>
+
+                <li class="nav-item pad">
+                    <a href="Movies.html" class="nav-link" >
+                        <i class="material-icons">business_center</i> Movies
+                    </a>
+                </li>
+                <li class="nav-item pad">
+                    <a href="#" class="nav-link" >
+                        <i class="material-icons">business_center</i> BuyTickets
+                    </a>
+                </li>
+                <li class="nav-item pad">
+                    <a href="#" class="nav-link" >
+                        <i class="material-icons">business_center</i> ShowTimes
+                    </a>
+                </li>
+
+                <form class="form-inline ml-auto pad">
+                    <div class="form-group has-gray">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+                        <i class="material-icons">search</i>
+                    </button>
+                </form>
+                <li class="button-container nav-item iframe-extern pad" style="right: 100px;">
+                    <a href="login.html" target="_blank" class="btn  btn-rose   btn-round btn-block" >
+                        <i class="material-icons">fingerprint</i> LOGIN
+                    </a>
+                </li>
+                <li class="dropdown nav-item">
+                    <a href="#pablo" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
+                        <div class="profile-photo-small">
+                            <img src="./assets/img/faces/avatar.jpg" alt="Circle Image" class="rounded-circle img-fluid" >
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left">
+
+                        <a href="#pablo" class="dropdown-item">ViewProfile</a>
+                        <a href="#pablo" class="dropdown-item">EditProfile</a>
+                        <a href="#pablo" class="dropdown-item">LogOut</a>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/Aquaman.jpg');height: 350px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised" id="main" >
+    <div class="contact-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto" style="margin-left: -40px">
+                    <h2 class="title" style="text-align: center">Seat Arrangements</h2>
+
+                    <div class="row">
+
+                        <div class="col-md-6 ml-auto mr-auto" >
+                            <div class="row">
+                                <div class="col-md-1 ml-auto mr-auto reservedSeat" id="A1" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A1</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A2" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A2</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A3" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A3</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A4" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A4</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A5" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A5</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A6" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A6</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 ml-auto mr-auto" style="margin-left: 50px">
+                            <div class="row">
+
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A7" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A7</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A8" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A8</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A9" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A9</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A10" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A10</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A11" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A11</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="A12" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> A12</div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-md-6 ml-auto mr-auto" >
+                            <div class="row">
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B1" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B1</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B2" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B2</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B3" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B3</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B4" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B4</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B5" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B5</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B6" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B6</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 ml-auto mr-auto" style="margin-left: 50px">
+                            <div class="row">
+
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B7" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B7</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B8" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B8</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B9" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B9</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B10" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B10</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B11" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B11</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="B12" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> B12</div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-md-6 ml-auto mr-auto" >
+                            <div class="row">
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C1" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C1</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C2" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C2</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C3" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C3</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C4" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C4</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C5" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C5</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C6" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C6</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 ml-auto mr-auto" style="margin-left: 50px">
+                            <div class="row">
+
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C7" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C7</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C8" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C8</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C9" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C9</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C10" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C10</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C11" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C11</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="C12" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> C12</div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-md-6 ml-auto mr-auto" >
+                            <div class="row">
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D1" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D1</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D2" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D2</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D3" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D3</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D4" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D4</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D5" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D5</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D6" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D6</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 ml-auto mr-auto" style="margin-left: 50px">
+                            <div class="row">
+
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D7" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D7</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D8" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D8</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D9" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D9</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D10" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D10</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D11" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D11</div>
+                                <div class="col-md-1 ml-auto mr-auto defaultSeatClass" id="D12" onmouseenter="ChangeColor(this)" onmouseleave="ChangeColorMouseLeave(this)" onclick="SeatClick(this)"> D12</div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <br>
+
+                    <div class="row" style="margin-left: 100px">
+
+                        <div class="col-md-4 ml-auto mr-auto">
+                            <label style="background-color: Blue ;height: 50px;width:50px;"></label> <p>Selected </p>
+                        </div>
+                        <div class="col-md-4 ml-auto mr-auto">
+                            <label style="background-color: green ;height: 50px;width:50px;"></label> <p>Available</p>
+                        </div>
+                        <div class="col-md-4 ml-auto mr-auto btn-raised">
+                            <label  style="background-color:red ;height: 50px;width:50px;"></label> <p>Reserved</p>
+                        </div>
+                    </div>
+
+                    <h3 class="title" style="text-align: center"><span id="NumberOFTickets"> 0 &nbsp;</span>Tickets are Selected</h3>
+
+
+                    <div>
+                        <span class="title" style="margin-left: 230px">Adults</span>
+                        <div class="btn-group " style="margin-left: -70px;">
+                            <button class="btn btn-round btn-info btn-sm" id="adultMinus" style="height: 40px;margin-top: 20px;margin-left: 100px" onclick="CountMinus()"> <i class="material-icons">remove</i> </button>
+                            <h3 id="adultCount">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</h3>
+                            <button class="btn btn-round btn-info btn-sm" id="adultPlus" style="height:40px;margin-top: 20px"> <i class="material-icons" onclick="CountFun()">add</i> </button>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="title" style="margin-left: 230px">Kids</span>
+                        <div class="btn-group " style="margin-left: -50px;">
+                            <button class="btn btn-round btn-info btn-sm" id="kidMinus" style="height: 40px;margin-top: 20px;margin-left: 100px" onclick="MinusCountKid()"> <i class="material-icons">remove</i> </button>
+                            <h3 id="kidCount">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</h3>
+                            <button class="btn btn-round btn-info btn-sm" id="kidPlus" style="height: 40px;margin-top: 20px" onclick="CountFunKids()"> <i class="material-icons">add</i> </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-4 ml-auto mr-auto " >
+                        <img  class="img-raised" src="assets/img/Aquaman.jpg" style="height: 250px;width: 375px;margin-top: 50px">
+                        <h4 class="title" style="text-align: left">Film Name</h4>
+                        <h4 class="title" style="text-align: left">Date : <span>01/01/2019</span></h4>
+                        <h4 class="title" style="text-align: left">Time : <span>10.30am</span></h4>
+                        <h4 class="title" style="text-align: left">Theatre : <span>Galle</span></h4>
+                        <h4 class="title" style="text-align: left">Seat Type <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adults : <span> 2</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span>Kids : <span> 2</span> </span></h4>
+                        <h4 class="title" style="text-align: left; " >Seat Numbers : <span id="seatNumbers"></span></h4>
+                        <h4 class="title" style="text-align: left; ">Total :&nbsp;&nbsp; <span>RS : 2000.00</span></h4>
+                        <button class="btn btn-danger" style="margin-left: 300px">Payment</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<footer class="footer footer-default" >
+    <div class="container">
+        <nav class="float-left">
+            <ul>
+                <!--<li>-->
+                <!--<a href=" ">-->
+                <!--<img src="images/mars Logo.png" alt="Raised Image" class="img-raised rounded img-fluid" style="height:72px;width:200px;margin-top: -20px; "></a>-->
+                <!--</a>-->
+                <!--</li>-->
+                <li >
+                    <a href="#" >
+                        ABOUT US
+                    </a>
+                </li>
+                <li >
+                    <a href="#" >
+                        CONTACT US
+                    </a>
+                </li>
+                <li >
+                    <a href="#" >
+                        FAQ
+                    </a>
+                </li>
+                <li >
+                    <a href="#" >
+                        Register
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright float-right">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="https://www.creative-tim.com/" target="_blank">Mars</a> for a better web.
+            <div style=" margin-left: -750px">
+                <button class="btn btn-just-icon btn-twitter" >
+                    <i class="fa fa-twitter"></i>
+                </button>
+                <button class="btn btn-just-icon  btn-facebook">
+                    <i class="fa fa-facebook"> </i>
+                </button>
+
+                <button class="btn btn-just-icon  btn-google">
+                    <i class="fa fa-google"> </i>
+                </button>
+
+                <button class="btn btn-just-icon  btn-linkedin">
+                    <i class="fa fa-linkedin"></i>
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+<script src="assets/js/plugins/moment.min.js"></script>
+
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+
+<!--&lt;!&ndash; Place this tag in your head or just before your close body tag. &ndash;&gt;-->
+<!--<script async defer src="assets/js/plugins/buttons.github.io/buttons.js"></script>-->
+
+<!--	Plugin for Sharrre btn -->
+<script src="assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
+<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+<script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
+<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+<script src="assets/js/plugins/bootstrap-selectpicker.js" type="text/javascript"></script>
+<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="assets/js/plugins/jasny-bootstrap.min.js" type="text/javascript"></script>
+<!--	Plugin for Small Gallery in Product Page -->
+<script src="assets/js/plugins/jquery.flexisel.js" type="text/javascript"></script>
+
+<!-- Plugins for presentation and navigation  -->
+<script src="assets/demo/modernizr.js" type="text/javascript"></script>
+<script src="assets/demo/vertical-nav.js" type="text/javascript"></script>
+
+<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+<script src="assets/js/material-kit.min1036.js?v=2.1.1" type="text/javascript"></script>
+
+<script>
+
+// -------------Date Time Picker----------
+$('.datetimepicker').datetimepicker({
+
+            format: 'DD/MM/YYYY',
+
+            icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-chevron-up",
+            down: "fa fa-chevron-down",
+            previous: 'fa fa-chevron-left',
+            next: 'fa fa-chevron-right',
+            today: 'fa fa-screenshot',
+            clear: 'fa fa-trash',
+            close: 'fa fa-remove'
+}
+});
+</script>
+
+<script>
+
+    $(document).ready(function() {
+        var minus = document.getElementById("adultCount").textContent;
+        var kidMinus = document.getElementById("kidCount").textContent
+        if(minus == 0 || kidMinus==0){
+            document.getElementById("adultMinus").disabled = true;
+            document.getElementById("kidMinus").disabled = true;
+
+        }
+
+    });
+
+
+
+    //////////////////////// plus and mins function for kids and adult ////////////////////////////////////
+    function CountFun(){
+        var ticketCount= document.getElementById("NumberOFTickets").textContent;
+        var count=0;
+        var plus = document.getElementById("adultCount").textContent;
+        var kidCount = document.getElementById("kidCount").textContent;
+        if(parseInt(plus)+parseInt(kidCount)!=parseInt(ticketCount)){
+
+            if(parseInt(plus) < parseInt(ticketCount) ){
+
+                if(plus !=0 || plus ==0 ){
+                    document.getElementById("adultMinus").disabled = false;
+                    count=parseInt(plus)+parseInt(1);
+                    var divData= document.getElementById("adultCount");
+                    divData.innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+count+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";//this part has been edited
+
+                    ticketCount= document.getElementById("NumberOFTickets").textContent;
+                    plus = document.getElementById("adultCount").textContent;
+
+                    if(parseInt(plus)==parseInt(ticketCount) || parseInt(plus)+parseInt(kidCount)==parseInt(ticketCount) ){
+                        console.log("GGG");
+                        document.getElementById("kidPlus").disabled = true;
+                        document.getElementById("adultPlus").disabled =true;
+                    }
+                }
+            }
+        }
+    }
+
+    function CountMinus(){
+        var minus = document.getElementById("adultCount").textContent;
+        if(minus != 0){
+            var minusCount = parseInt(minus)-parseInt(1);
+            var minusDiv = document.getElementById("adultCount");
+            if(minusCount==0){
+                document.getElementById("adultMinus").disabled = true;
+            }
+            minusDiv.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ minusCount +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+           var ticketCount= document.getElementById("NumberOFTickets").textContent;
+            var adultCount = document.getElementById("adultCount").textContent;
+           var  kidCount =  document.getElementById("kidCount").textContent;
+
+           if(parseInt(adultCount)+parseInt(kidCount) < parseInt(ticketCount)){
+               document.getElementById("kidPlus").disabled = false;
+               document.getElementById("adultPlus").disabled =false;
+           }
+
+        }else{
+            document.getElementById("adultMinus").disabled = true;
+
+        }
+
+    }
+
+    function CountFunKids(){
+
+        var ticketCount= document.getElementById("NumberOFTickets").textContent;
+        var count=0;
+        var adultCount= document.getElementById("adultCount").textContent;
+        var kidCount  = document.getElementById("kidCount").textContent;
+
+        if(parseInt(adultCount)+ parseInt(kidCount)!=parseInt(ticketCount)){
+
+            console.log("KidCount" +kidCount);
+            console.log("adultCount" +adultCount);
+            console.log("ticketCount" +ticketCount);
+
+            if(parseInt(kidCount) < parseInt(ticketCount) ){
+
+                if(kidCount !=0 || kidCount ==0 ){
+
+                    document.getElementById("kidMinus").disabled = false;
+                    count=parseInt(kidCount)+parseInt(1);
+                    var divData= document.getElementById("kidCount");
+                    divData.innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+count+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";//this part has been edited
+
+                    ticketCount= document.getElementById("NumberOFTickets").textContent;
+                    adultCount = document.getElementById("adultCount").textContent;
+                    kidCount =  document.getElementById("kidCount").textContent;
+
+                    if(parseInt(kidCount)==parseInt(ticketCount) || parseInt(adultCount)+parseInt(kidCount)==parseInt(ticketCount) ){
+
+                        document.getElementById("kidPlus").disabled = true;
+                        document.getElementById("adultPlus").disabled =true;
+                    }
+                }
+            }
+        }
+
+    }
+
+    function MinusCountKid(){
+        var minus = document.getElementById("kidCount").textContent;
+        if(minus != 0){
+            var minusCount = parseInt(minus)-parseInt(1);
+            var minusDiv = document.getElementById("kidCount");
+            if(minusCount==0){
+                document.getElementById("kidMinus").disabled = true;
+            }
+            minusDiv.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ minusCount +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+            var ticketCount= document.getElementById("NumberOFTickets").textContent;
+            var adultCount = document.getElementById("adultCount").textContent;
+            var  kidCount =  document.getElementById("kidCount").textContent;
+
+            if(parseInt(adultCount)+parseInt(kidCount) < parseInt(ticketCount)){
+                document.getElementById("kidPlus").disabled = false;
+                document.getElementById("adultPlus").disabled =false;
+            }
+        }else{
+            document.getElementById("kidMinus").disabled = true;
+
+        }
+    }
+
+
+    ////////////////////////////////////////End of function//////////////////////////
+
+
+    ////////////////////////////////////////////Mouse enter and leave Function ///////////////
+
+    function ChangeColor(divName){
+        var idName = divName.id;
+        if($("#"+idName).hasClass("defaultSeatClass")){
+            $("#"+idName).addClass("mouseEnter");
+            $("#"+idName).removeClass("defaultSeatClass");
+        }
+    }
+
+    function ChangeColorMouseLeave(divName1){
+        var idName2 = divName1.id;
+        if($("#"+idName2).hasClass("mouseEnter")){
+            console.log('ddddddds');
+            $("#"+idName2).removeClass("mouseEnter");
+			$("#"+idName2).addClass("defaultSeatClass");
+        }
+    }
+
+    function SeatClick(divName2) {
+        var idName = divName2.id;
+
+        if($("#"+idName).hasClass("seatClickClass") ){
+
+            $("#"+idName).removeClass("seatClickClass");
+            var count= document.getElementById("NumberOFTickets").textContent;
+            count=parseInt(count)-parseInt(1);
+            var divData= document.getElementById("NumberOFTickets");
+            divData.innerHTML=count+"&nbsp;&nbsp;&nbsp;";
+
+
+        }else if($("#"+idName).hasClass("reservedSeat")){
+
+        }
+        else{
+            var idName = divName2.id;
+            $("#"+idName).addClass("seatClickClass");
+            var seatText = document.getElementById("seatNumbers").textContent;
+
+
+
+            // if( ){
+            //     seatText=idName;
+            //     console.log(seatText+"ddfdfdf");
+            //     document.getElementById("seatNumbers").innerHTML=seatText;
+            // }else{
+                seatText=seatText +","+idName;
+                document.getElementById("seatNumbers").innerHTML=seatText;
+            // }
+
+            var count= document.getElementById("NumberOFTickets").textContent;
+            count=parseInt(count)+parseInt(1);
+
+            var divData= document.getElementById("NumberOFTickets");
+            divData.innerHTML=count+"&nbsp;&nbsp;&nbsp;";
+        }
+
+
+    }
+
+
+
+</script>
+</body>
+
+</html>
